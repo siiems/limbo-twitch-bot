@@ -13,7 +13,7 @@
     - Same goes for userIDs in the userid_blacklist
     - Change prefix as desired
     - Change currency as desired *(emojis are good for this)*
-
+- Add new file called data.json
 - Rename token_basic.json to token.json
 - In token.json:
     - Add clientid of your bot account to your clientid
