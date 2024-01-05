@@ -1,0 +1,10 @@
+[
+    {
+        "clientid": "change_this",
+        "clientsecret": "change_this"
+    },
+    {
+        "access_token": "change_this",
+        "refresh_token": "change_this"
+    }
+]
