@@ -36,6 +36,19 @@ def add_user(user_id):
         json.dump(file_data, file, indent=4)
     file.close()
 
+def change_money(user_id : str, change_amount : float):
+    data = getJsonData('./data.json')
+    index = get_user_index(data, user_id)
+    if (index == -1):
+        print(f'Failed using change_money command: Attempted to transfer money to or from a user which holds no bank account! (user_id: {user_id})')
+        return
+    change_amount = round(change_amount,2)
+    data[index]['money'] += change_amount
+    writeJsonData('./data.json', data)
+    
+
+    
+
 # token functions
         
 def refresh_token() -> str:

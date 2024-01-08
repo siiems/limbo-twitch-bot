@@ -194,7 +194,7 @@ class Bot(commands.Bot):
         await ctx.send(f'/me @{ctx.author.name} added {currency}{free_money:0,.2f} to your account :D')
 
     @commands.command()
-    async def balance(self, ctx: commands.Context): # limbo bet_amount : int | multiplier_prediction : str 
+    async def balance(self, ctx: commands.Context): # balance
         data = getJsonData('./data.json')
         index = get_user_index(data,ctx.author.id)
 
@@ -229,5 +229,67 @@ class Bot(commands.Bot):
         if chance > 100: chance = 100
 
         await ctx.send(f'/me @{ctx.author.name} the chance of winning a {args[0]}x roll is {chance}% :Z')
+
+    
+    @commands.command()
+    async def flekyu(self, ctx: commands.Context):
+        await ctx.send('www.twitch.tv/flekyu/clip/SaltyAbstemiousWoodcockKreygasm-RvbwZxPKyIhDLwXQ')
+
+    @commands.command() 
+    async def give(self, ctx: commands.Context):
+        message = ctx.message.content
+        args = message.split(' '); args.pop(0)
+
+        if (len(args) < 2):
+            await ctx.send(f'/me @{ctx.author.name} bad args')
+            return
+        
+        data = getJsonData('./data.json')
+
+        sender_index = get_user_index(data, ctx.author.id)
+
+        if (sender_index == -1):
+            add_user(ctx.author.id)
+
+        try:
+            int(args[0])
+        except:
+            await ctx.send(f'/me @{ctx.author.name} invalid userid :/ ')
+            return 
+        
+
+        recipient_index = get_user_index(data, args[0])
+
+        if (recipient_index == -1):
+            await ctx.send(f'/me @{ctx.author.name} that user has no bank account :/')
+            return
+        
+        
+        try:
+            args[1] = round(float(args[1]),2)
+            if (0 >= args[1]): 
+                raise ValueError
+        except:
+            await ctx.send(f'/me @{ctx.author.name} invalid amount :/')
+            return
+        
+        if (data[sender_index]['money'] < args[1]):
+            await ctx.send(f'/me @{ctx.author.name} you do not have enough money :/')
+            return
+        
+
+        data[sender_index]['money'] -= args[1]
+
+        data[recipient_index]['money'] += args[1]
+
+        await ctx.send(f'/me @{ctx.author.name} gave UserID {args[0]} {currency}{args[1]:0,.2f} :D')
+
+        
+
+        
+
+
+    
+
 bot = Bot()
 bot.run()
