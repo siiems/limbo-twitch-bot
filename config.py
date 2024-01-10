@@ -19,6 +19,5 @@ free_money = 100
 
 pre_1x_crash : float = 0.2 #percentage as a decimal e.g 0.02 = 2%
 
-# no touchy
-
+# no touchy -------------------------------------------------------------
 data_basic = {"user_id": "none","money": 0}
