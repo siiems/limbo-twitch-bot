@@ -2,6 +2,7 @@
 ( Created for onlyvz )
 # Prerequisites:
  - Python 3 installed
+ - twitchio, psutil, requests  modules
 
 # Setup
 - Download code as zip
