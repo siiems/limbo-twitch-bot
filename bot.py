@@ -1,11 +1,10 @@
-import asyncio
 import time
 import math
 import random
 import psutil
 from twitchio.ext.commands.core import Context
 from general import *
-from twitchio.ext import commands, routines
+from twitchio.ext import commands
 
 access_token : str = refresh_token()
 
@@ -282,11 +281,36 @@ class Bot(commands.Bot):
 
         data[recipient_index]['money'] += args[1]
 
+        writeJsonData('./data.json', data)
+
         await ctx.send(f'/me @{ctx.author.name} gave UserID {args[0]} {currency}{args[1]:0,.2f} :D')
 
         
 
+    @commands.command(aliases=['pos','position','lb']) 
+    async def leaderboard(self, ctx: commands.Context):
+        data = getJsonData('./data.json')
+
+        userindex = get_user_index(data, ctx.author.id)
+
+        if (userindex == -1):
+            add_user(ctx.author.id)
+
+        leaderboard = sorted(data, key=lambda x: x['money'], reverse=True)
+
+        leaderPos = -1
+        for i in range(len(leaderboard)):
+            if (leaderboard[i]['user_id'] == ctx.author.id):
+                leaderPos = i+1
+                break
         
+        if (leaderPos == -1):
+            print(f'Error while executing leaderboard command with user {ctx.author.id}')
+            return
+        
+        await ctx.send(f'/me @{ctx.author.display_name} you are #{leaderPos} / {len(leaderboard):0,.0f} :D')
+        
+
 
 
     
