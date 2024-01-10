@@ -30,11 +30,11 @@ Has basic QOL features and changeable values
 
 
 # Commands:
-  - **limbo** *[bet amount]* *[multiplier prediction]*x | Gamba an amount, cooldown changeable in config.py
+  - **limbo** *[bet amount]* *[multiplier prediction]* x | Gamba an amount, cooldown changeable in config.py
   - **free** | Gives 100 money to user, cooldown changeable in config.py
   - **ping** | Displays how long the script has been running and the RAM usage in MB
   - **balance** | Displays amount of money the user has
-  - **chance** *[multiplier]*x | Display the odds of winning a limbo with the multiplier
+  - **chance** *[multiplier]* x | Display the odds of winning a limbo with the multiplier
   - **leaderboard** | Shows users rank compared to total users, ranked by total money
   - **give** *[userid]* *[amount]* | Gives user with the given userid the specified amount of money
 
