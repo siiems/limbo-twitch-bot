@@ -151,7 +151,7 @@ class Bot(commands.Bot):
         if (ran < target):
             moneyChange = (bet_amount * multiplier_prediction) - bet_amount
 
-        roll = round((1/math.pow(ran,1.010101010101010101)),2)
+        roll = round((math.exp(math.log(ran)/-1)),2)
 
         if (random.random() < pre_1x_crash):
             moneyChange = bet_amount * -1
